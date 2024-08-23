@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <td colspan="4">
+                <input type="text" id="inputBox" value="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="digitButton" onclick="dgtPressed(7)">7</td>
+            <td class="digitButton" onclick="dgtPressed(8)">8</td>
+            <td class="digitButton" onclick="dgtPressed(9)">9</td>
+            <td class="operatorButton" onclick="operation('x')">x</td>
+        </tr>
+        <tr>
+            <td class="digitButton" onclick="dgtPressed(6)">6</td>
+            <td class="digitButton" onclick="dgtPressed(5)">5</td>
+            <td class="digitButton" onclick="dgtPressed(4)">4</td>
+            <td class="operatorButton" onclick="operation('+')" >+</td>
+        </tr>
+        <tr>
+            <td class="digitButton" onclick="dgtPressed(1)">1</td>
+            <td class="digitButton" onclick="dgtPressed(2)">2</td>
+            <td class="digitButton" onclick="dgtPressed(3)">3</td>
+            <td class="operatorButton" onclick="operation('-')">-</td>
+        </tr>
+        <tr>
+            <td class="digitButton" colspan="2" onclick="dgtPressed(0)">0</td>
+            <td class="acButton" onclick="acButton()">AC</td>
+            <td class="operatorButton" onclick="operation('/')">/</td>
+        </tr>
+        <tr>
+            <td class="operatorButton" colspan="4" onclick="equal()">=</td>
+        </tr>
+    </table>
+    <script>
+        var holder=0;
+        var operator;
+        function dgtPressed(num) {
+            if(document.getElementById("inputBox").value==0){
+                document.getElementById("inputBox").value=num;
+            }
+            else{
+                document.getElementById("inputBox").value=document.getElementById("inputBox").value+num;
+            }
+        }
+        function acButton() {
+            document.getElementById("inputBox").value=0;
+        }
+        function equal() {
+            
+            switch (operator) {
+                case "+":
+                    holder=holder+parseInt(document.getElementById("inputBox").value);
+                    break;
+                case "-":
+                    holder=holder-parseInt(document.getElementById("inputBox").value);
+                    break;
+                case "x":
+                    holder=holder*parseInt(document.getElementById("inputBox").value);
+                    break;
+                case "/":
+                    holder=holder/parseInt(document.getElementById("inputBox").value);
+                    break;
+                
+                
+                default:
+                    document.getElementById("inputBox").value=ERROR;
+                    break;
+            }
+            document.getElementById("inputBox").value=holder;
+            
+        }
+        function operation(op) {
+            operator=op;
+            holder= parseInt(document.getElementById("inputBox").value);
+            acButton();
+            
+            
+        }
+    </script>
+</body>
+</html>
